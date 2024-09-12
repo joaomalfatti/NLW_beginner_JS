@@ -7,7 +7,7 @@
 
 ## Peças de uma linguagem
 
-  - Coentários
+  - [x]Comentários
   - Declaração de variáveis (const, let)
   - Operadores (atribuição, concatenação, matemáticos, lógicos)
   - Tipos de dados (string, number, boolean)
@@ -19,3 +19,12 @@
   Coleta de dados
   Processar os dados (manipular, alterar ...)
   Apresentar os dados
+
+## Escopo e variáveis
+  Variáveis globais e locais
+  Constantes
+
+## Tipos de dados
+  Strings (Textos): "" '' ``
+  Number: São números
+  Boolean:
