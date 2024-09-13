@@ -54,3 +54,13 @@ Apresentar os dados
 - [x] criar, passar argumento
 - [x] excutar
 - [x] arrow function / named function
+
+# Estrutura de repetição
+- [x] while
+
+# Condicionais
+- [x] switch
+
+## Módulos em Node.js:
+ - [x] Importação de módulos (require, CommonJs)
+ - [x] Biblioteca 'inquirer' para criar prompts interativos

@@ -1,3 +1,38 @@
-//Hello World
+const  { select } = require('@inquirer/prompts');
+//Aqui começamos o aplicativo
+const start = async () => {
+  while (true) {
 
-console.log("Hello World");
+    const opcao = await select({
+      message: "Menu >",
+      choices: [
+        {
+          name: "Cadastrar meta",
+          value: "cadastrar"
+        },
+        {
+          name: "Listar metas",
+          value: "listar"
+        },
+        {
+          name: "Sair",
+          value: "sair"
+        }
+      ]
+    })
+    
+    switch (opcao) {
+      case "cadastrar":
+        console.log("Vamos cadastrar")
+        break
+      case "listar":
+        console.log("Vamos listar")
+        break
+      case "sair":
+        console.log("Saindo...")
+        return
+      }
+  }
+}
+
+start()
