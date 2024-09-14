@@ -1,22 +1,33 @@
 const  { select, input } = require('@inquirer/prompts');
 
-let meta = {
-  value: "Tomar 3L de água por dia",
+let goal = {
+  value: "Driks 3L of water per day",
   checked: false
 }
-let metas = [meta]
+let goals = [goal]
 
-const cadastrarMeta = async () => {
-  const meta = await input({ message: "Digite a meta:"})
+const registerGoal = async () => {
+  let success = false;
+  while (!success) {
+    try {
+      // Prompts the user to enter the goal
+      const userInput = await input({ message:"Enter your goal:"})
+      //Checks if the goal is empty
+      if (!userInput.trim()) {
+        console.log("The goal cannot be empty. Please enter something.")
+        return
+      }
+      // Add the goal to the goal list
+      goals.push({value: userInput.trim(), checked: false})
+      //Display a success message
+      console.log("Goal registered successfully!")
+      
+      success = true;
 
-  if(meta.length == 0) {
-    console.log("A meta não pode ser vazia.")
-    return
+    } catch (error) { 
+      console.log("An error occurred while registering the goal. Try again.", error)
+    }
   }
-
-  metas.push(
-    { value: meta, checked: false}
-  )
 }
 
 
@@ -28,8 +39,8 @@ const start = async () => {
       message: "Menu >",
       choices: [
         {
-          name: "Cadastrar meta",
-          value: "cadastrar"
+          name: "Registers Goals",
+          value: "register"
         },
         {
           name: "Listar metas",
@@ -43,12 +54,13 @@ const start = async () => {
     })
     
     switch (opcao) {
-      case "cadastrar":
-        await cadastrarMeta();
-        console.log(metas)
+      case "register":
+        await registerGoal();
+        console.log(goals)
         break
       case "listar":
-        console.log("Vamos listar")
+        await listarMetas();
+        console.log(listarMetas)
         break
       case "sair":
         console.log("Saindo...")
