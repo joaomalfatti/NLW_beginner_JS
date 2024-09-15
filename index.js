@@ -60,6 +60,23 @@ const listGoals = async () => {
 
 }
 
+//GoalsAccomplished
+const GoalsAccomplished = async () => {
+  const performed = goals.filter((goal) => {
+    return goal.checked
+  })
+  
+  if(performed.length == 0) {
+    console.log("There are no goals achieved! 😪")
+    return
+  }
+
+  await select({
+    message: "Goals performed",
+    choices: [...performed]
+  })
+}
+
 
 // Here we start the application
 const start = async () => {
@@ -77,6 +94,10 @@ const start = async () => {
           value: "list"
         },
         {
+          name: "Metas Realizadas",
+          value: "Performed"
+        },
+        {
           name: "Sair",
           value: "sair"
         }
@@ -90,6 +111,9 @@ const start = async () => {
         break
       case "list":
         await listGoals();
+        break
+      case "Performed":
+        await GoalsAccomplished();
         break
       case "sair":
         console.log("Saindo...")
