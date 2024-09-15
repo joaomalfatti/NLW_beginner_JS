@@ -40,14 +40,14 @@ const listGoals = async () => {
     instructions: false
   })
 
+  goals.forEach((m) => {
+    m.checked = false
+  })
+
   if(responses.length == 0){
     console.log("No goals selected")
     return
   }
-
-  goals.forEach((m) => {
-    m.checked = false
-  })
 
   responses.forEach((response) => {
     const goal = goals.find((m) =>{
@@ -62,15 +62,18 @@ const listGoals = async () => {
 
 //GoalsAccomplished
 const GoalsAccomplished = async () => {
+  //Looking for an accomplished goal to be listed
   const performed = goals.filter((goal) => {
     return goal.checked
   })
   
+  //If there is no goal achieved
   if(performed.length == 0) {
     console.log("There are no goals achieved! 😪")
     return
   }
 
+  // Here lists the goals achieved.
   await select({
     message: "Goals performed",
     choices: [...performed]
