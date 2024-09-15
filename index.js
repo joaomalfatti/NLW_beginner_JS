@@ -75,12 +75,12 @@ const GoalsAccomplished = async () => {
 
   // Here lists the goals achieved.
   await select({
-    message: "Goals performed " + performed.length,
+    message: "Goals performed: " + performed.length,
     choices: [...performed]
   })
 }
 
-// Metas Abertas
+// openGoals
 const openGoals = async () => {
   const open = goals.filter((goal) => {
     return goal.checked != true
@@ -92,9 +92,35 @@ const openGoals = async () => {
   }
 
   await select({
-    message: "Goals open " + open.length,
+    message: "Goals open: " + open.length,
     choices: [...open]
   })
+}
+
+//Delete goals
+const deleteGoals = async () => {
+
+  const deleteGoals = goals.map((goal) => {
+    return { value: goal.value, checked: false }
+  })
+
+  const ItemsToDelete = await checkbox({
+    message: "Select goals to delete",
+    choices: [...deleteGoals],
+    instructions: false,
+  })
+
+  if (ItemsToDelete.length == 0) {
+    console.log("No items to delete")
+    return
+  }
+
+  ItemsToDelete.forEach((item) => {
+    goals = goals.filter((goal) => {
+      return goal.value!== item
+    })
+  })
+  console.log("Goals deleted successfully!")
 }
 
 // Here we start the application
@@ -117,8 +143,12 @@ const start = async () => {
           value: "Performed"
         },
         {
-          name: "openGoals",
+          name: "Open Goals",
           value: "open"
+        },
+        {
+          name: "Delete Goals",
+          value: "delete"
         },
         {
           name: "Sair",
@@ -140,6 +170,9 @@ const start = async () => {
         break
       case "open":
         await openGoals();
+        break
+      case "delete":
+        await deleteGoals();
         break
       case "sair":
         console.log("Saindo...")
