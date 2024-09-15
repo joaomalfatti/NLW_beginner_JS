@@ -1,4 +1,5 @@
 const  { select, input, checkbox } = require('@inquirer/prompts');
+const fs = require("fs").promises
 
 let message = "⚡Welcome daily goals application ⚡";
 
@@ -9,6 +10,8 @@ let goal = {
 }
 // Structure for storing a list of goals.
 let goals = [goal]
+
+
 
 // Add goals
 const registerGoal = async () => {
@@ -38,6 +41,12 @@ const registerGoal = async () => {
 
 // List goals
 const listGoals = async () => {
+
+  if(goals.length == 0) {
+    message = "No goals found. Use the 'Add Goal' button to add your first goal."
+    return
+  }
+
   const responses = await checkbox({
     message: "Use t he arrow keys to change the goal, the espace to select or unmark and the Enter key to finish this stpe",
     choices: [...goals],
@@ -66,6 +75,12 @@ const listGoals = async () => {
 
 //GoalsAccomplished
 const GoalsAccomplished = async () => {
+
+  if(goals.length == 0) {
+    message = "No goals found. Use the 'Add Goal' button to add your first goal."
+    return
+  }
+
   //Looking for an accomplished goal to be listed
   const performed = goals.filter((goal) => {
     return goal.checked
@@ -86,6 +101,12 @@ const GoalsAccomplished = async () => {
 
 // openGoals
 const openGoals = async () => {
+
+  if(goals.length == 0) {
+    message = "No goals found. Use the 'Add Goal' button to add your first goal."
+    return
+  }
+
   const open = goals.filter((goal) => {
     return goal.checked != true
   })
@@ -103,6 +124,11 @@ const openGoals = async () => {
 
 //Delete goals
 const deleteGoals = async () => {
+  
+  if(goals.length == 0) {
+    message = "No goals found. Use the 'Add Goal' button to add your first goal."
+    return
+  }
 
   const deleteGoals = goals.map((goal) => {
     return { value: goal.value, checked: false }

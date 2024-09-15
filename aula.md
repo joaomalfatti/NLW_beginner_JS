@@ -1,74 +1,93 @@
-## Linguagem de programação
 
-Maneira de dar instrução ao computador.
-Como um lego, você irá utilizar peças para criar algoritmos, ou seja, para resolver problemas.
+## Programming language
 
-> 💡 **Algoritmo**: Sequência de passos lógica e finita para resolução de um problema.
+A way of giving instructions to a computer.
 
-## Peças de uma linguagem
+Like a Lego, you will use pieces to create algorithms, that is, to solve problems.
 
-- Comentários
-- Declaração de variáveis (const, let)
-- Operadores (atribuição, concatenação, matemáticos, lógicos )
-- Tipos de dados (string, number, boolean)
-- Estrutura de dados (functions, object, array)
-- Controle de fluxo (if/else)
-- Estrutura de repetição (for, while)
+> 💡 **Algorithm**: A logical and finite sequence of steps to solve a problem.
 
-# Fases da resolução de um problema
+## Parts of a language
 
-Coletar os dados
-Processar os dados (manipular, alterar ...)
-Apresentar os dados
+- Comments
+- Variable declaration (const, let)
+- Operators (assignment, concatenation, mathematical, logical)
+- Data types (string, number, boolean)
+- Data structures (functions, object, array)
+- Flow control (if/else)
+- Repetition structure (for, while)
 
-## Escopo e variáveis:
+# Problem-solving phases
 
-- [x] Variáveis globais e locais
-- [x] Constantes
+Collect data
+Process data (manipulate, change ...)
+Present data
 
-## Tipos de dados:
+## Scope and variables:
 
-- [x] Strings (texto): "" '' ``
-- [x] Numbers: 2 1.4
-- [x] Boolean: true, false
+- Global and local variables
+- Constants
 
-# Operadores
+## Data types:
 
-- [x] Operadores de atribuição de valor: =
-- [x] Operador de contatenação: +
-- [x] Operadores de comparação: == != < > <= >=
-- [x] Spread operator: ...
+- Strings (text): "" '' ``
+- Numbers: 2 1.4
+- Boolean: true, false
 
+# Operators
 
-## Estruturas de dados:
+- Value assignment operators: =
+- Containment operator: +
+- Comparison operators: == != < > <= >=
+- Spread operator: ...
 
-### Arrays: 
+## Data structures:
 
-- [x] Uma lista que contém qualquer tipo de dado 
-- [x] Métodos de array: push, [find, forEach, filter] : HOF (Higher Order Functions)
+### Arrays:
 
-### Objetos:
+- A list that contains any type of data
+- Array methods: push, [find, forEach, filter] : HOF (Higher Order Functions)
 
-- [x] Atributos e métodos
-- [x] Criação e manipulação de objetos
-- [x] Acesso a propriedades de objetos
+### Objects:
+
+- Attributes and methods
+- Object creation and manipulation
+- Object properties access
 
 ### Functions
 
-- [x] criar, passar argumento
-- [x] excutar
-- [x] arrow function / named function
+- create, pass arguments
+- execute
+- arrow function / named function
 
-# Estrutura de repetição
-- [x] while
+# Repetition structure
+- while
 
-# Condicionais
-- [x] switch
-- [x] if/else
+# Conditionals
+- switch
+- if/else
 
-## Módulos em Node.js:
- - [x] Importação de módulos (require, CommonJs)
- - [x] Biblioteca 'inquirer' para criar prompts interativos
+## Modules in Node.js:
+- Importing modules (require, CommonJs)
+- 'inquirer' library to create interactive prompts
+- FS (File System)
 
- ## Programação assíncrona e Promises:
-  - [x] Uso de funções assíncronas (async/await)
+## JSON
+- JavaScript Object Notation (JSON)
+- JSON.parse() : transforms JSON to JS
+- JSON.stringify(): transforms JS to JSON
+
+## Asynchronous programming and Promises:
+- Using asynchronous functions (async/await)
+
+## Functional Requirement
+ - Create Goals 
+ - List Goals 
+   - Completed Goals 
+   - Open Goals 
+ - Mark/Unmark Completed Goals 
+ - Remove Goals 
+ - Messaging Systems 
+ - Persist Data
+
+ 

@@ -1,7 +1,8 @@
-[x] - Criar metas
-[x] - Listas metas
-  [x] - Metas Realizadas
-  [x] - Metas abertas
-[x] - Marca/Desmarca metas realizadas
-[x] - Remover metas
-[x] - Sistemas de Mensagens.
+[x] - Create Goals 
+[x] - List Goals 
+  [x] - Completed Goals 
+  [x] - Open Goals 
+[x] - Mark/Unmark Completed Goals 
+[x] - Remove Goals 
+[x] - Messaging Systems 
+[x] - Persist Data
