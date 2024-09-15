@@ -1,11 +1,13 @@
-const  { select, input } = require('@inquirer/prompts');
-
+const  { select, input, checkbox } = require('@inquirer/prompts');
+// Dynamic added Goals
 let goal = {
   value: "Driks 3L of water per day",
   checked: false
 }
+// Structure for storing a list of goals.
 let goals = [goal]
 
+// Add goals
 const registerGoal = async () => {
   let success = false;
   while (!success) {
@@ -21,7 +23,7 @@ const registerGoal = async () => {
       goals.push({value: userInput.trim(), checked: false})
       //Display a success message
       console.log("Goal registered successfully!")
-      
+
       success = true;
 
     } catch (error) { 
@@ -30,12 +32,40 @@ const registerGoal = async () => {
   }
 }
 
+// List goals
+const listGoals = async () => {
+  const responses = await checkbox({
+    message: "Use t he arrow keys to change the goal, the espace to select or unmark and the Enter key to finish this stpe",
+    choices: [...goals],
+    instructions: false
+  })
 
-//Aqui começamos o aplicativo
+  if(responses.length == 0){
+    console.log("No goals selected")
+    return
+  }
+
+  goals.forEach((m) => {
+    m.checked = false
+  })
+
+  responses.forEach((response) => {
+    const goal = goals.find((m) =>{
+      return m.value == response
+    })
+    goal.checked = true
+  })
+
+  console.log("Goal(s) marked as completed.")
+
+}
+
+
+// Here we start the application
 const start = async () => {
   while (true) {
 
-    const opcao = await select({
+    const option = await select({
       message: "Menu >",
       choices: [
         {
@@ -44,7 +74,7 @@ const start = async () => {
         },
         {
           name: "Listar metas",
-          value: "listar"
+          value: "list"
         },
         {
           name: "Sair",
@@ -53,14 +83,13 @@ const start = async () => {
       ]
     })
     
-    switch (opcao) {
+    switch (option) {
       case "register":
         await registerGoal();
         console.log(goals)
         break
-      case "listar":
-        await listarMetas();
-        console.log(listarMetas)
+      case "list":
+        await listGoals();
         break
       case "sair":
         console.log("Saindo...")
