@@ -1,4 +1,7 @@
 const  { select, input, checkbox } = require('@inquirer/prompts');
+
+let message = "⚡Welcome daily goals application ⚡";
+
 // Dynamic added Goals
 let goal = {
   value: "Driks 3L of water per day",
@@ -16,16 +19,17 @@ const registerGoal = async () => {
       const userInput = await input({ message:"Enter your goal:"})
       //Checks if the goal is empty
       if (!userInput.trim()) {
-        console.log("The goal cannot be empty. Please enter something.")
+        message = "The goal cannot be empty. Please enter something."
         return
       }
       // Add the goal to the goal list
       goals.push({value: userInput.trim(), checked: false})
       //Display a success message
-      console.log("Goal registered successfully!")
+
+      message = "Goal registered successfully! 😎"
 
       success = true;
-
+      
     } catch (error) { 
       console.log("An error occurred while registering the goal. Try again.", error)
     }
@@ -45,7 +49,7 @@ const listGoals = async () => {
   })
 
   if(responses.length == 0){
-    console.log("No goals selected")
+    message = "No goals selected"
     return
   }
 
@@ -56,7 +60,7 @@ const listGoals = async () => {
     goal.checked = true
   })
 
-  console.log("Goal(s) marked as completed.")
+  message = "Goal(s) marked as completed."
 
 }
 
@@ -69,7 +73,7 @@ const GoalsAccomplished = async () => {
   
   //If there is no goal achieved
   if(performed.length == 0) {
-    console.log("There are no goals achieved! 😪")
+    message("There are no goals achieved! 😪")
     return
   }
 
@@ -87,7 +91,7 @@ const openGoals = async () => {
   })
 
   if(open.length == 0) {
-    console.log("There are no open goals! 😍")
+    message("There are no open goals! 😍")
     return
   }
 
@@ -111,7 +115,7 @@ const deleteGoals = async () => {
   })
 
   if (ItemsToDelete.length == 0) {
-    console.log("No items to delete")
+    message = "No items to delete"
     return
   }
 
@@ -120,13 +124,24 @@ const deleteGoals = async () => {
       return goal.value!== item
     })
   })
-  console.log("Goals deleted successfully!")
+  message = "Goals deleted successfully!"
 }
 
+const showMessage =  () => {
+  console.clear();
+  
+  if(message != ""){
+    console.log(message)
+    console.log("")
+    message = ""
+  }
+
+}
 // Here we start the application
 const start = async () => {
+  
   while (true) {
-
+    showMessage()
     const option = await select({
       message: "Menu >",
       choices: [
@@ -151,8 +166,8 @@ const start = async () => {
           value: "delete"
         },
         {
-          name: "Sair",
-          value: "sair"
+          name: "exit",
+          value: "exit"
         }
       ]
     })
@@ -160,7 +175,6 @@ const start = async () => {
     switch (option) {
       case "register":
         await registerGoal();
-        console.log(goals)
         break
       case "list":
         await listGoals();
@@ -174,8 +188,8 @@ const start = async () => {
       case "delete":
         await deleteGoals();
         break
-      case "sair":
-        console.log("Saindo...")
+      case "exit":
+        console.log("GoodBye...")
         return
       }
   }
