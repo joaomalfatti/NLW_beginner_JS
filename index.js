@@ -75,11 +75,27 @@ const GoalsAccomplished = async () => {
 
   // Here lists the goals achieved.
   await select({
-    message: "Goals performed",
+    message: "Goals performed " + performed.length,
     choices: [...performed]
   })
 }
 
+// Metas Abertas
+const openGoals = async () => {
+  const open = goals.filter((goal) => {
+    return goal.checked != true
+  })
+
+  if(open.length == 0) {
+    console.log("There are no open goals! 😍")
+    return
+  }
+
+  await select({
+    message: "Goals open " + open.length,
+    choices: [...open]
+  })
+}
 
 // Here we start the application
 const start = async () => {
@@ -93,12 +109,16 @@ const start = async () => {
           value: "register"
         },
         {
-          name: "Listar metas",
+          name: "List Goals",
           value: "list"
         },
         {
-          name: "Metas Realizadas",
+          name: "Goals Accomplished",
           value: "Performed"
+        },
+        {
+          name: "openGoals",
+          value: "open"
         },
         {
           name: "Sair",
@@ -117,6 +137,9 @@ const start = async () => {
         break
       case "Performed":
         await GoalsAccomplished();
+        break
+      case "open":
+        await openGoals();
         break
       case "sair":
         console.log("Saindo...")
