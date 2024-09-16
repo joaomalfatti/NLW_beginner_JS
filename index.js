@@ -1,16 +1,31 @@
 const  { select, input, checkbox } = require('@inquirer/prompts');
-const fs = require("fs").promises
+const fs = require("fs").promises;
 
 let message = "⚡Welcome daily goals application ⚡";
 
-// Dynamic added Goals
-let goal = {
-  value: "Driks 3L of water per day",
-  checked: false
-}
 // Structure for storing a list of goals.
-let goals = [goal]
+let goals
 
+const loadGoals = async () => {
+  try {
+    const data = await fs.readFile("goals.json", "utf-8");
+    goals = JSON.parse(data);
+  }
+  catch (error) {
+    console.error("An error occurred while loading the goals. Starting with an empty list.", error)
+    goals = []
+  }
+}
+
+const saveGoals = async () => {
+  try {
+    await fs.writeFile("goals.json", JSON.stringify(goals, null, 2))
+    message = "Goals saved successfully!"
+  }
+  catch (error) {
+    console.error("An error occurred while saving the goals.", error)
+  }
+}
 
 
 // Add goals
@@ -124,7 +139,7 @@ const openGoals = async () => {
 
 //Delete goals
 const deleteGoals = async () => {
-  
+
   if(goals.length == 0) {
     message = "No goals found. Use the 'Add Goal' button to add your first goal."
     return
@@ -165,9 +180,12 @@ const showMessage =  () => {
 }
 // Here we start the application
 const start = async () => {
-  
+  await loadGoals ()
+
   while (true) {
     showMessage()
+    await saveGoals()
+    
     const option = await select({
       message: "Menu >",
       choices: [
